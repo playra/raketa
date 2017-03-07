@@ -1,4 +1,4 @@
-import { AppRegistry } from 'react-native';
-import MainView from './main.js';
+import { AppRegistry } from 'react-native'
+import MainView from './app/main'
 
-AppRegistry.registerComponent('Raketa', () => MainView);
+AppRegistry.registerComponent('Raketa', () => MainView)
