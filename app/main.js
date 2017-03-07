@@ -1,65 +1,66 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   TouchableOpacity
-} from 'react-native'
+} from 'react-native';
 
-import styles from './styles'
+import styles from './styles';
 
-import * as Animatable from 'react-native-animatable'
-import SAMPLE_GROUPS from './samples'
+import * as Animatable from 'react-native-animatable';
+import SAMPLE_GROUPS from './samples';
 
-import { createIconSetFromFontello } from 'react-native-vector-icons'
-import fontelloConfig from '../ios/fontello/config.json'
-const Icon = createIconSetFromFontello(fontelloConfig)
+import { createIconSetFromFontello } from 'react-native-vector-icons';
 
-const getRandomSample = group => group[Math.floor(Math.random() * group.length)]
+import fontelloConfig from '../ios/fontello/config.json';
+
+const Icon = createIconSetFromFontello(fontelloConfig);
+
+const getRandomSample = group => group[Math.floor(Math.random() * group.length)];
 
 export default class MainView extends Component {
 
   state = {
     playing: false,
-    volume: .5,
-    currentSamples: SAMPLE_GROUPS.map( getRandomSample )
-  }
+    volume: 0.5,
+    currentSamples: SAMPLE_GROUPS.map(getRandomSample)
+  };
 
   playSound = () => {
     // stop all samples
-    const { currentSamples } = this.state
-    currentSamples.map( sample => sample.stop().release() )
+    const { currentSamples } = this.state;
+    currentSamples.map(sample => sample.stop().release());
 
     // make sum beatz
-    const newSamples = SAMPLE_GROUPS.map( getRandomSample )
-    newSamples.map( sample => sample.play() )
+    const newSamples = SAMPLE_GROUPS.map(getRandomSample);
+    newSamples.map(sample => sample.play());
 
     // show whats playing
-    console.log(`now playing: ${newSamples.map( sample => sample._key)}`)
+    console.log(`now playing: ${newSamples.map(sample => sample._key)}`);
 
     this.setState({
       playing: true,
       currentSamples: newSamples
-    })
+    });
   }
 
   stopSound = () => {
-    const { currentSamples } = this.state
+    const { currentSamples } = this.state;
     // stop all sounds
-    currentSamples.map( sample => sample.stop().release() )
-    console.log(`stop looping`)
+    currentSamples.map(sample => sample.stop().release());
+    console.log('stop looping');
 
-    this.setState({playing: false})
+    this.setState({ playing: false });
   }
 
   toggleSound = () => {
-    const {playing} = this.state
+    const { playing } = this.state;
     if (playing) {
-      this.stopSound()
+      this.stopSound();
     } else {
-      this.playSound()
+      this.playSound();
     }
   }
 
-  render () {
-
+  render() {
     // todo move btn to
 
     return (
