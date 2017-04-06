@@ -19,6 +19,8 @@ const stopSample = sample => sample.stop().release()
 
 function playSample (sample, groupIndex) {
 
+  let timer = Date.now()
+
   const onStop = (success) => {
 
     // todo clone sample before play
@@ -34,12 +36,14 @@ function playSample (sample, groupIndex) {
 
     console.log(`group: ${groupIndex}, sample changed from ${sample._key} to ${nextSample._key}`)
 
+    console.time('loop stops')
     playSample(nextSample, groupIndex)
   }
 
   setTimeout(()=>{
     console.log( 'sample', sample, `loaded is ${sample._loaded}`)
     sample.play(onStop)
+    console.log( ` sample changed after ${Date.now() - timer} ms`)
   }, 100)
 }
 
