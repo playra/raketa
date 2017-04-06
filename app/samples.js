@@ -1,25 +1,78 @@
 import Sound from 'react-native-sound'
 
-//let samplesCount = 0
+class Sample {
 
-export function getSample (file) {
-  const sample = new Sound(file, Sound.MAIN_BUNDLE, error => {
-    if (error) {
-      console.log(`failed to load sample: ${file}`)
-      return
+  constructor (file, loops = 0) {
+
+    this.file = file
+
+    this.sound = new Sound(file, Sound.MAIN_BUNDLE, error => {
+      if (error) {
+        console.log(`failed to load sample: ${file}`)
+        return
+      }
+
+      this.duration = this.sound.getDuration()
+      // console.log(`sample loaded: ${file}, duration: ${this.duration}`)
+    })
+
+    this.sound.setNumberOfLoops(loops)
+
+    this.loops = loops
+    this.timesPlayed = 0
+  }
+
+  play (onEnd, gap = 0 /* start time in ms */) {
+
+    const callback = () => {
+      this.timesPlayed++
+
+      if (this.timesPlayed == this.loops + 1) {
+        this.timesPlayed = 0
+        this.sound.stop().release()
+        onEnd()
+      } else {
+        console.log(`${this.file} played ${this.timesPlayed} times, need ${this.loops - this.timesPlayed + 1} more`)
+        // this.sound.stop().release()
+        this.sound.play(callback)
+      }
     }
 
-    console.log(`sample loaded: ${file}, duration: ${sample.getDuration()}`)
-  })
+    this.sound.setCurrentTime(gap / 1000) // set playgap
+    this.sound.play(callback)
+  }
 
-  const loops = Math.round(Math.random())
-  sample.setNumberOfLoops(loops)
-  return sample
+  stop () {
+    this.sound.stop().release()
+    this.timesPlayed = 0
+    this.loops = 0
+  }
+
+  setLoops (loops) {
+    this.loops = loops
+  }
+
 }
 
 // test loop
 const TABLA = 'TABLA.wav'
-const SILENCE = 'silence.aif'
+
+export const SILENCE_GAP = 3
+export const SILENCE = 'silence.aif'
+
+// emulate silence
+export const getSilenceSample = () => {
+  return {
+    duration: 69.81818594104308,
+    loops: 0,
+    file: SILENCE,
+    play(onEnd){
+      setTimeout(() => onEnd(), this.duration * 1000)
+    },
+    stop(){},
+    setLoops(){}
+  }
+}
 
 // G1
 const S1_CRASH_FILL_BD_SN = 'S1_CRASH_FILL_BD_SN.wav'
@@ -58,10 +111,8 @@ const S4_HATS_PERCS = 'S4_HATS_PERCS.wav'
 
 const GROUP_2 = [
   S1_MIN_HATS,
-  SILENCE,
   S2_HATS_CLICKS,
   S3_HATS,
-  SILENCE,
   S4_HATS_PERCS,
 ]
 
@@ -79,15 +130,12 @@ const S4_SYNTH_BASS = 'S4_SYNTH_BASS.wav'
 const GROUP_3 = [
   LONG_BASS_SOLO,
   S1_BASS1,
-  SILENCE,
   S1_BASS2,
   S1_BASS3,
   S2_BASS_2,
   S3_BASS_2,
-  SILENCE,
   S3_BASS1,
   S4_BASS1,
-  SILENCE,
   S4_SYNTH_BASS,
 ]
 
@@ -103,14 +151,10 @@ const S4_SUB_CHORD = 'S4_Sub_CHORD.wav'
 const GROUP_4 = [
   S1_CHORDS,
   S1_EGT,
-  SILENCE,
   S1_PAD,
   S2_ARP,
-  SILENCE,
   S3_CHORDS,
-  SILENCE,
   S4_CHORDS,
-  SILENCE,
   S4_SUB_CHORD,
 ]
 
@@ -126,13 +170,10 @@ const S_E_GT_S = 'S_ElectroGT_Solo.wav'
 const GROUP_5 = [
   S1_CHORDS_G5,
   S1_PADG5,
-  SILENCE,
   S2_PADG5,
   S3_PAD_THEME,
-  SILENCE,
   S4_PAD,
   S4_SHORT_PAD,
-  SILENCE,
   S_E_GT_S,
 ]
 
@@ -148,15 +189,10 @@ const VOXFLY_L_D = 'VOXfly_long_delay.wav'
 const GROUP_6 = [
   KVOX_L_D,
   S6_VOX,
-  SILENCE,
   S2_VOCODERVOICE,
-  SILENCE,
   S4_VOCODER_VOICE,
-  SILENCE,
   VOX_N,
-  SILENCE,
   VOX_S,
-  SILENCE,
   VOXFLY_L_D,
 ]
 
@@ -171,13 +207,11 @@ const S_I_FX = 'S_IvanFX.wav'
 
 const GROUP_7 = [
   S1_FX,
-  S1_N_A,
+//  S1_N_A,
   S2_FX,
   S3_FX,
-  SILENCE,
   S3_PERCUSSION,
   S7_FX,
-  SILENCE,
   S_I_FX,
 ]
 
@@ -193,18 +227,16 @@ const SUB_HATS = 'Sub_HATS.wav'
 
 const GROUP_8 = [
   LOOP_D_H,
-  SILENCE,
   LOOP_M_B_D,
   S1_LF_D,
   S2_DRUMS_LOOP,
-  SILENCE,
   S3_DRUM_LOOP,
   S4_DRUM_LOOP,
-  SILENCE,
   S4_LOOP_DIST_BEAT,
   SUB_HATS,
 ]
 
+// todo LOOP GAP PER GROUP
 const GROUPS = [
   GROUP_1,
   GROUP_2,
@@ -214,10 +246,32 @@ const GROUPS = [
   GROUP_6,
   GROUP_7,
   //GROUP_8
-];
+]
 
-export function getSamplesGroup (index) {
-  return GROUPS[index]
-};
+// preload samples
+const GROUPS_PRELOADED = GROUPS.map(group => group.map(file => new Sample(file)))
 
-export default GROUPS;
+const getRandomNumber = group => Math.floor(Math.random() * group.length)
+const getRandomSample = group => group[getRandomNumber(group)]
+export const countSilence = samples => samples.reduce((count, sample) => count + (sample.file === SILENCE ? 1 : 0), 0)
+
+export const getRandomSamplesArray = () => {
+
+  let samples = GROUPS_PRELOADED.map(getRandomSample)
+  let silences = countSilence(samples)
+  if (silences < SILENCE_GAP) {
+    while (silences < SILENCE_GAP) {
+      const i = getRandomNumber(samples)
+      if (samples[i].file !== SILENCE) {
+        samples[i] = getSilenceSample()
+        silences++
+      }
+    }
+  }
+
+  return samples
+}
+
+export const getRandomSampleFromGroup = (groupIndex) => getRandomSample(GROUPS_PRELOADED[groupIndex])
+
+export default GROUPS
