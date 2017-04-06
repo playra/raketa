@@ -6,7 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "eslint app",
-    "emu": "react-native run-ios --simulator="iPhone SE""
+    "emu": "react-native run-ios --simulator='iPhone SE'"
   },
   "dependencies": {
     "react": "15.4.2",
