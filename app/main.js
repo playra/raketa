@@ -32,18 +32,18 @@ function playSample (sample, groupIndex) {
     const currentGroup = getSamplesGroup(groupIndex)
     const nextSample = getSample(getRandomSample(currentGroup))
 
-    // stopSample(nextSample)
-    playSample(nextSample, groupIndex)
-
     console.log(`group: ${groupIndex}, sample changed from ${sample._key} to ${nextSample._key}`)
+
+    playSample(nextSample, groupIndex)
   }
 
-  sample.play(onStop)
+  setTimeout(()=>{
+    console.log( 'sample', sample, `loaded is ${sample._loaded}`)
+    sample.play(onStop)
+  }, 100)
 }
 
-const sampleFiles = SAMPLE_GROUPS.map(getRandomSample)
-const startSamples = sampleFiles.map(getSample)
-
+const startSamples = (SAMPLE_GROUPS.map(getRandomSample)).map(getSample)
 
 export default class MainView extends Component {
 
@@ -59,16 +59,18 @@ export default class MainView extends Component {
     currentSamples.map(stopSample)
 
     // make sum beatz
-    const newSamples = SAMPLE_GROUPS.map(getRandomSample)
+    const newSamples = (SAMPLE_GROUPS.map(getRandomSample)).map(getSample)
     // show whats playing
     console.log(`now playing: ${newSamples.map(sample => sample._key)}`)
+
+    global.SAMPLES = newSamples
 
     this.setState({
       playing: true,
       currentSamples: newSamples
     })
 
-    newSamples.map((sample, groupIndex) => playSample(getSample(sample), groupIndex))
+    newSamples.map((sample, groupIndex) => playSample(sample, groupIndex))
   }
 
   stopSound = () => {

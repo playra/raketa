@@ -9,9 +9,11 @@ export function getSample (file) {
       return
     }
 
-    console.log(`sample loaded: ${file}`)
+    console.log(`sample loaded: ${file}, duration: ${sample.getDuration()}`)
   })
-  sample.setNumberOfLoops(-1)
+
+  const loops = Math.round(Math.random())
+  sample.setNumberOfLoops(loops)
   return sample
 }
 
