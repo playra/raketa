@@ -6,7 +6,6 @@ import {
 } from 'react-native'
 
 import styles from './styles'
-
 import * as Animatable from 'react-native-animatable'
 
 import {
@@ -21,11 +20,7 @@ import {
   countSilence
 } from './samples'
 
-import { createIconSetFromFontello } from 'react-native-vector-icons'
-
-import fontelloConfig from '../ios/fontello/config.json'
-
-const Icon = createIconSetFromFontello(fontelloConfig)
+import RocketButton from './components/RocketButton'
 
 export default class MainView extends Component {
 
@@ -66,17 +61,6 @@ export default class MainView extends Component {
 
       let nextSample = getRandomSampleFromGroup(groupIndex)
       nextSample.setLoops(loops)
-
-      // if (silenceCount < SILENCE_GAP) {
-      //   console.log(`need ${SILENCE_GAP - silenceCount} more silence samples`)
-      //   nextSample = getSilenceSample()
-      //   //silence.play(() => this.playSample(nextSample, groupIndex))
-      // }
-      //
-      // if (silenceCount > SILENCE_GAP) {
-      //   console.log(`there is more silences(${silenceCount}) then needed (${SILENCE_GAP})`)
-      // }
-
       currentSamples[groupIndex] = nextSample
 
       this.setState({currentSamples}, () => {
@@ -131,7 +115,6 @@ export default class MainView extends Component {
   render () {
 
     return (
-
       <View style={styles.container}>
         <View style={{padding: 40, height: 200}}>
           {this.renderSamplesInfo()}
@@ -142,19 +125,9 @@ export default class MainView extends Component {
           iterationCount="infinite"
           direction="alternate-reverse"
         >
-          <TouchableOpacity
-            style={styles.play}
-            onPress={this.toggleSound}
-          >
-            <Icon
-              name="play"
-              size={120}
-              color="#EF2B47"
-            />
-          </TouchableOpacity>
+          <RocketButton onClick={this.toggleSound}/>
         </Animatable.View>
-      </View>
-    )
+      </View>)
   }
 
 }

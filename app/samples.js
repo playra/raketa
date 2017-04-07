@@ -257,17 +257,7 @@ const GROUPS_PRELOADED = GROUPS.map(group => group.map(file => new Sample(file))
 const getRandomNumber = group => Math.floor(Math.random() * group.length)
 const getRandomSample = group => Math.random() <= SILENCE_RATIO ? getSilenceSample() : group[getRandomNumber(group)]
 export const countSilence = samples => samples.reduce((count, sample) => count + (sample.file === SILENCE ? 1 : 0), 0)
-
-
-export const getRandomSamplesArray = () => {
-
-  let samples = GROUPS_PRELOADED.map(getRandomSample)
-
-
-
-  return samples
-}
-
+export const getRandomSamplesArray = () => GROUPS_PRELOADED.map(getRandomSample)
 export const getRandomSampleFromGroup = (groupIndex) => getRandomSample(GROUPS_PRELOADED[groupIndex])
 
 export default GROUPS
