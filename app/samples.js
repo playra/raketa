@@ -1,5 +1,10 @@
 import Sound from 'react-native-sound'
 
+import {
+  SILENCE_RATIO,
+  SILENCE_GAP
+} from './constants'
+
 class Sample {
 
   constructor (file, loops = 0) {
@@ -56,8 +61,6 @@ class Sample {
 
 // test loop
 const TABLA = 'TABLA.wav'
-
-export const SILENCE_GAP = 3
 export const SILENCE = 'silence.aif'
 
 // emulate silence
@@ -252,22 +255,15 @@ const GROUPS = [
 const GROUPS_PRELOADED = GROUPS.map(group => group.map(file => new Sample(file)))
 
 const getRandomNumber = group => Math.floor(Math.random() * group.length)
-const getRandomSample = group => group[getRandomNumber(group)]
+const getRandomSample = group => Math.random() <= SILENCE_RATIO ? getSilenceSample() : group[getRandomNumber(group)]
 export const countSilence = samples => samples.reduce((count, sample) => count + (sample.file === SILENCE ? 1 : 0), 0)
+
 
 export const getRandomSamplesArray = () => {
 
   let samples = GROUPS_PRELOADED.map(getRandomSample)
-  let silences = countSilence(samples)
-  if (silences < SILENCE_GAP) {
-    while (silences < SILENCE_GAP) {
-      const i = getRandomNumber(samples)
-      if (samples[i].file !== SILENCE) {
-        samples[i] = getSilenceSample()
-        silences++
-      }
-    }
-  }
+
+
 
   return samples
 }

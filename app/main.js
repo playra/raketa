@@ -8,12 +8,16 @@ import {
 import styles from './styles'
 
 import * as Animatable from 'react-native-animatable'
+
+import {
+  SILENCE_RATIO,
+  SILENCE_GAP
+} from './constants'
+
 import {
   getRandomSamplesArray,
   getRandomSampleFromGroup,
   getSilenceSample,
-  SILENCE,
-  SILENCE_GAP,
   countSilence
 } from './samples'
 
@@ -56,7 +60,6 @@ export default class MainView extends Component {
     const silenceCount = countSilence(currentSamples)
     console.log(`there is ${silenceCount} silence samples`)
 
-
     const onEnd = (success) => {
       sample.stop()
       const loops = Math.round(Math.random() * 2) // 0...3
@@ -64,15 +67,15 @@ export default class MainView extends Component {
       let nextSample = getRandomSampleFromGroup(groupIndex)
       nextSample.setLoops(loops)
 
-      if (silenceCount < SILENCE_GAP) {
-        console.log(`need ${SILENCE_GAP - silenceCount} more silence samples`)
-        nextSample = getSilenceSample()
-        //silence.play(() => this.playSample(nextSample, groupIndex))
-      }
-
-      if (silenceCount > SILENCE_GAP) {
-        console.log(`there is more silences(${silenceCount}) then needed (${SILENCE_GAP})`)
-      }
+      // if (silenceCount < SILENCE_GAP) {
+      //   console.log(`need ${SILENCE_GAP - silenceCount} more silence samples`)
+      //   nextSample = getSilenceSample()
+      //   //silence.play(() => this.playSample(nextSample, groupIndex))
+      // }
+      //
+      // if (silenceCount > SILENCE_GAP) {
+      //   console.log(`there is more silences(${silenceCount}) then needed (${SILENCE_GAP})`)
+      // }
 
       currentSamples[groupIndex] = nextSample
 
@@ -83,14 +86,7 @@ export default class MainView extends Component {
       this.playSample(nextSample, groupIndex)
     }
 
-    if (silenceCount < SILENCE_GAP) {
-      const currentSample = getSilenceSample()
-      currentSamples[groupIndex] = currentSample
-      currentSample.play(onEnd)
-      this.setState({currentSamples})
-    } else {
-      sample.play(onEnd)
-    }
+    sample.play(onEnd)
   }
 
   stopSound = () => {
@@ -157,7 +153,7 @@ export default class MainView extends Component {
             />
           </TouchableOpacity>
         </Animatable.View>
-    </View>
+      </View>
     )
   }
 
