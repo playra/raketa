@@ -68,11 +68,12 @@ export const getSilenceSample = () => {
   return {
     duration: 69.81818594104308,
     loops: 0,
+    timeout: null,
     file: SILENCE,
     play(onEnd){
-      setTimeout(() => onEnd(), this.duration * 1000)
+      this.timeout = setTimeout(() => onEnd(), this.duration * 1000)
     },
-    stop(){},
+    stop(){ clearTimeout(this.timeout)},
     setLoops(){}
   }
 }
