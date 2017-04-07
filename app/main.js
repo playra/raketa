@@ -116,7 +116,7 @@ export default class MainView extends Component {
     const {currentSamples} = this.state
 
     const textStyle = {
-      fontSize: 14, color: 'white'
+      fontSize: 12, color: 'white', paddingLeft: 5
     }
 
     const viewStyle = {
@@ -136,27 +136,28 @@ export default class MainView extends Component {
 
     return (
 
-      <Animatable.View
-        animation="pulse"
-        easing="ease-in"
-        iterationCount="infinite"
-        direction="alternate-reverse"
-        style={styles.container}
-      >
+      <View style={styles.container}>
         <View style={{padding: 40, height: 200}}>
           {this.renderSamplesInfo()}
         </View>
-        <TouchableOpacity
-          style={styles.play}
-          onPress={this.toggleSound}
+        <Animatable.View
+          animation="pulse"
+          easing="ease-in"
+          iterationCount="infinite"
+          direction="alternate-reverse"
         >
-          <Icon
-            name="play"
-            size={120}
-            color="#EF2B47"
-          />
-        </TouchableOpacity>
-      </Animatable.View>
+          <TouchableOpacity
+            style={styles.play}
+            onPress={this.toggleSound}
+          >
+            <Icon
+              name="play"
+              size={120}
+              color="#EF2B47"
+            />
+          </TouchableOpacity>
+        </Animatable.View>
+    </View>
     )
   }
 
