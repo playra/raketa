@@ -105,7 +105,8 @@
 		2965C56E1E6398A100EE3E2F /* Sub_HATS.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2965C5581E6398A100EE3E2F /* Sub_HATS.wav */; };
 		298B80B81E636FDC005F9EEC /* TABLA.wav in Resources */ = {isa = PBXBuildFile; fileRef = 298B80B71E636FDC005F9EEC /* TABLA.wav */; };
 		29B301A71E4A0B6D00758D6C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B301A61E4A0B6D00758D6C /* AVFoundation.framework */; };
-		29C8E2281E9BBA4B00BF1DF1 /* Metronom.aif in Resources */ = {isa = PBXBuildFile; fileRef = 29C8E20A1E9BBA3B00BF1DF1 /* Metronom.aif */; };
+		29C8E22A1E9BC06000BF1DF1 /* Metronom.aif in Resources */ = {isa = PBXBuildFile; fileRef = 29C8E2291E9BC06000BF1DF1 /* Metronom.aif */; };
+		29C8E22B1E9BC06000BF1DF1 /* Metronom.aif in Resources */ = {isa = PBXBuildFile; fileRef = 29C8E2291E9BC06000BF1DF1 /* Metronom.aif */; };
 		29F793F01E679019005857B7 /* silence.aif in Resources */ = {isa = PBXBuildFile; fileRef = 29F793EF1E679019005857B7 /* silence.aif */; };
 		2C9C2BCD080444DB9B228A6C /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66E52C16F0284C5B95FE6590 /* MaterialIcons.ttf */; };
 		35D9BB558E2643B4834D71A4 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EAF6FD06A934F769119BD74 /* MaterialCommunityIcons.ttf */; };
@@ -120,7 +121,6 @@
 		C09836730F594B408F454124 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD6BF89F257D44E1B5CC2C9B /* Octicons.ttf */; };
 		C3BA49482A6B44D8A42D1E29 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 50033F2A6FAF4A64A0C85333 /* FontAwesome.ttf */; };
 		F15F525928524DBAB8124380 /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D48CE6F9FEFE4EB595CF991C /* libRealmReact.a */; };
-		F63CF2041E9BAAB00053CD62 /* metronome.wav in Resources */ = {isa = PBXBuildFile; fileRef = F63CF2031E9BAAB00053CD62 /* metronome.wav */; };
 		F7918317E6E14DD4993E722D /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6EB527254B44965BC2A263E /* Foundation.ttf */; };
 /* End PBXBuildFile section */
 
@@ -440,7 +440,7 @@
 		2965C5581E6398A100EE3E2F /* Sub_HATS.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Sub_HATS.wav; sourceTree = "<group>"; };
 		298B80B71E636FDC005F9EEC /* TABLA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TABLA.wav; sourceTree = "<group>"; };
 		29B301A61E4A0B6D00758D6C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		29C8E20A1E9BBA3B00BF1DF1 /* Metronom.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Metronom.aif; sourceTree = "<group>"; };
+		29C8E2291E9BC06000BF1DF1 /* Metronom.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Metronom.aif; sourceTree = "<group>"; };
 		29F793EF1E679019005857B7 /* silence.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = silence.aif; sourceTree = "<group>"; };
 		37CFC61F6FC04E97B16D52C6 /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		3984E5EA3C284262B2691ADE /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
@@ -458,7 +458,6 @@
 		F2E707D6842F4DD39F6472BF /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		F4BA5458AD364E70B8EFA178 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		F60BC3AF75E54DADA95CD3BF /* libRNFS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFS.a; sourceTree = "<group>"; };
-		F63CF2031E9BAAB00053CD62 /* metronome.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = metronome.wav; sourceTree = "<group>"; };
 		FAF64DFE150545BF8C4AFF81 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		FD6BF89F257D44E1B5CC2C9B /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -628,8 +627,7 @@
 		2915C2001E47F3CF000EB493 /* Wata */ = {
 			isa = PBXGroup;
 			children = (
-				29C8E20A1E9BBA3B00BF1DF1 /* Metronom.aif */,
-				F63CF2031E9BAAB00053CD62 /* metronome.wav */,
+				29C8E2291E9BC06000BF1DF1 /* Metronom.aif */,
 				298B80B71E636FDC005F9EEC /* TABLA.wav */,
 				29F793EF1E679019005857B7 /* silence.aif */,
 				2915C2011E47F75C000EB493 /* G1 */,
@@ -1267,6 +1265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29C8E22B1E9BC06000BF1DF1 /* Metronom.aif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1281,7 +1280,6 @@
 				292029771E67AA8200F59DCC /* fontello-codes.css in Resources */,
 				2951816E1E63974D00610BFB /* S2_BASS_2.wav in Resources */,
 				2920297D1E67AA8200F59DCC /* fontello.eot in Resources */,
-				F63CF2041E9BAAB00053CD62 /* metronome.wav in Resources */,
 				2920297F1E67AA8200F59DCC /* fontello.ttf in Resources */,
 				292029801E67AA8200F59DCC /* fontello.woff in Resources */,
 				292029781E67AA8200F59DCC /* fontello-embedded.css in Resources */,
@@ -1322,11 +1320,11 @@
 				292029751E67AA8200F59DCC /* config.json in Resources */,
 				2951816D1E63974D00610BFB /* S1_BASS3.wav in Resources */,
 				2951815F1E63970100610BFB /* S4_HATS_PERCS.wav in Resources */,
+				29C8E22A1E9BC06000BF1DF1 /* Metronom.aif in Resources */,
 				2951815C1E63970100610BFB /* S1_Min_Hats.wav in Resources */,
 				292029821E67AA8200F59DCC /* LICENSE.txt in Resources */,
 				2951816A1E63974D00610BFB /* Long_BASS_SOLO.wav in Resources */,
 				2920297A1E67AA8200F59DCC /* fontello-ie7.css in Resources */,
-				29C8E2281E9BBA4B00BF1DF1 /* Metronom.aif in Resources */,
 				7F16DD40A330411B9BA59F5D /* EvilIcons.ttf in Resources */,
 				2951814E1E6396E900610BFB /* S1_Main_BD.wav in Resources */,
 				2965C55B1E6398A100EE3E2F /* S2_VOCODERVOICE.wav in Resources */,
