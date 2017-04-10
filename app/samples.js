@@ -33,8 +33,8 @@ class Sample {
       this.timesPlayed++
 
       if (this.timesPlayed == this.loops + 1) {
-        this.timesPlayed = 0
-        this.sound.stop().release()
+        console.log('sample onEnd callback')
+        this.stop()
         onEnd()
       } else {
         console.log(`${this.file} played ${this.timesPlayed} times, need ${this.loops - this.timesPlayed + 1} more`)
@@ -43,11 +43,12 @@ class Sample {
       }
     }
 
-    this.sound.setCurrentTime(gap / 1000) // set playgap
+    //this.sound.setCurrentTime(gap / 1000) // set playgap
     this.sound.play(callback)
   }
 
   stop () {
+    console.log('sample stop')
     this.sound.stop().release()
     this.timesPlayed = 0
     this.loops = 0
@@ -71,9 +72,19 @@ export const getSilenceSample = () => {
     timeout: null,
     file: SILENCE,
     play(onEnd){
-      this.timeout = setTimeout(() => onEnd(), this.duration * 1000)
+      console.log(`silence play`)
+      this.timeout = setTimeout(
+        () => {
+          console.log(`silence onEnd callback`)
+          onEnd()
+        },
+        this.duration * 1000
+      )
     },
-    stop(){ clearTimeout(this.timeout)},
+    stop(){
+      console.log(`silence emulation stop`)
+      clearTimeout(this.timeout)
+    },
     setLoops(){}
   }
 }
@@ -240,6 +251,13 @@ const GROUP_8 = [
   SUB_HATS,
 ]
 
+const METRONOME = 'metronome.wav'
+export const METRONOME_SAMPLE = new Sample(METRONOME)
+
+const METRONOME_GROUP = [
+  METRONOME
+]
+
 // todo LOOP GAP PER GROUP
 const GROUPS = [
   GROUP_1,
@@ -249,14 +267,17 @@ const GROUPS = [
   GROUP_5,
   GROUP_6,
   GROUP_7,
+  METRONOME_GROUP
   //GROUP_8
 ]
+
+
 
 // preload samples
 const GROUPS_PRELOADED = GROUPS.map(group => group.map(file => new Sample(file)))
 
 const getRandomNumber = group => Math.floor(Math.random() * group.length)
-const getRandomSample = group => Math.random() <= SILENCE_RATIO ? getSilenceSample() : group[getRandomNumber(group)]
+const getRandomSample = group => group.length === 1 ? group[0] : Math.random() <= SILENCE_RATIO ? getSilenceSample() : group[getRandomNumber(group)]
 export const countSilence = samples => samples.reduce((count, sample) => count + (sample.file === SILENCE ? 1 : 0), 0)
 export const getRandomSamplesArray = () => GROUPS_PRELOADED.map(getRandomSample)
 export const getRandomSampleFromGroup = (groupIndex) => getRandomSample(GROUPS_PRELOADED[groupIndex])

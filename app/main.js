@@ -17,10 +17,24 @@ import {
   getRandomSamplesArray,
   getRandomSampleFromGroup,
   getSilenceSample,
-  countSilence
+  countSilence,
+  METRONOME_SAMPLE
 } from './samples'
 
 import RocketButton from './components/RocketButton'
+
+
+const pingMetronome = () => METRONOME_SAMPLE.play(()=>{
+  console.log( 'play metronome sound')
+  METRONOME_SAMPLE.stop()
+  setTimeout(pingMetronome, 272)
+})
+
+setTimeout(
+  () => {
+    pingMetronome()
+  }, 1500)
+
 
 export default class MainView extends Component {
 
@@ -56,7 +70,6 @@ export default class MainView extends Component {
     console.log(`there is ${silenceCount} silence samples`)
 
     const onEnd = (success) => {
-      sample.stop()
       const loops = Math.round(Math.random() * 2) // 0...3
 
       let nextSample = getRandomSampleFromGroup(groupIndex)
