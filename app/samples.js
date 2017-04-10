@@ -2,8 +2,10 @@ import Sound from 'react-native-sound'
 
 import {
   SILENCE_RATIO,
-  SILENCE_GAP
+  DEFAULT_VOLUME
 } from './constants'
+
+const METRONOME = 'Metronom.aif'
 
 class Sample {
 
@@ -18,6 +20,11 @@ class Sample {
       }
 
       this.duration = this.sound.getDuration()
+      if ( file === METRONOME ) {
+        this.sound.setVolume(1)
+      } else {
+        this.sound.setVolume(DEFAULT_VOLUME)
+      }
       // console.log(`sample loaded: ${file}, duration: ${this.duration}`)
     })
 
@@ -60,6 +67,7 @@ class Sample {
 
 }
 
+export const METRONOME_SAMPLE = new Sample(METRONOME)
 // test loop
 const TABLA = 'TABLA.wav'
 export const SILENCE = 'silence.aif'
@@ -251,13 +259,8 @@ const GROUP_8 = [
   SUB_HATS,
 ]
 
-const METRONOME = 'Metronom.aif'
-export const METRONOME_SAMPLE = new Sample(METRONOME)
 
 const METRONOME_GROUP = [
-  METRONOME,
-  METRONOME,
-  METRONOME,
   METRONOME
 ]
 

@@ -24,7 +24,7 @@ import {
 import RocketButton from './components/RocketButton'
 
 
-const pingMetronome = () => METRONOME_SAMPLE.play(()=>{
+/*const pingMetronome = () => METRONOME_SAMPLE.play(()=>{
   console.log( 'play metronome sound')
   METRONOME_SAMPLE.stop()
   setTimeout(pingMetronome, 272)
@@ -33,7 +33,7 @@ const pingMetronome = () => METRONOME_SAMPLE.play(()=>{
 setTimeout(
   () => {
     pingMetronome()
-  }, 1500)
+  }, 1500)*/
 
 
 export default class MainView extends Component {
