@@ -105,6 +105,7 @@
 		2965C56E1E6398A100EE3E2F /* Sub_HATS.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2965C5581E6398A100EE3E2F /* Sub_HATS.wav */; };
 		298B80B81E636FDC005F9EEC /* TABLA.wav in Resources */ = {isa = PBXBuildFile; fileRef = 298B80B71E636FDC005F9EEC /* TABLA.wav */; };
 		29B301A71E4A0B6D00758D6C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B301A61E4A0B6D00758D6C /* AVFoundation.framework */; };
+		29C8E2281E9BBA4B00BF1DF1 /* Metronom.aif in Resources */ = {isa = PBXBuildFile; fileRef = 29C8E20A1E9BBA3B00BF1DF1 /* Metronom.aif */; };
 		29F793F01E679019005857B7 /* silence.aif in Resources */ = {isa = PBXBuildFile; fileRef = 29F793EF1E679019005857B7 /* silence.aif */; };
 		2C9C2BCD080444DB9B228A6C /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 66E52C16F0284C5B95FE6590 /* MaterialIcons.ttf */; };
 		35D9BB558E2643B4834D71A4 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1EAF6FD06A934F769119BD74 /* MaterialCommunityIcons.ttf */; };
@@ -439,6 +440,7 @@
 		2965C5581E6398A100EE3E2F /* Sub_HATS.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Sub_HATS.wav; sourceTree = "<group>"; };
 		298B80B71E636FDC005F9EEC /* TABLA.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = TABLA.wav; sourceTree = "<group>"; };
 		29B301A61E4A0B6D00758D6C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		29C8E20A1E9BBA3B00BF1DF1 /* Metronom.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = Metronom.aif; sourceTree = "<group>"; };
 		29F793EF1E679019005857B7 /* silence.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = silence.aif; sourceTree = "<group>"; };
 		37CFC61F6FC04E97B16D52C6 /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		3984E5EA3C284262B2691ADE /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 		2915C2001E47F3CF000EB493 /* Wata */ = {
 			isa = PBXGroup;
 			children = (
+				29C8E20A1E9BBA3B00BF1DF1 /* Metronom.aif */,
 				F63CF2031E9BAAB00053CD62 /* metronome.wav */,
 				298B80B71E636FDC005F9EEC /* TABLA.wav */,
 				29F793EF1E679019005857B7 /* silence.aif */,
@@ -1323,6 +1326,7 @@
 				292029821E67AA8200F59DCC /* LICENSE.txt in Resources */,
 				2951816A1E63974D00610BFB /* Long_BASS_SOLO.wav in Resources */,
 				2920297A1E67AA8200F59DCC /* fontello-ie7.css in Resources */,
+				29C8E2281E9BBA4B00BF1DF1 /* Metronom.aif in Resources */,
 				7F16DD40A330411B9BA59F5D /* EvilIcons.ttf in Resources */,
 				2951814E1E6396E900610BFB /* S1_Main_BD.wav in Resources */,
 				2965C55B1E6398A100EE3E2F /* S2_VOCODERVOICE.wav in Resources */,

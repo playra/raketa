@@ -251,10 +251,13 @@ const GROUP_8 = [
   SUB_HATS,
 ]
 
-const METRONOME = 'metronome.wav'
+const METRONOME = 'Metronom.aif'
 export const METRONOME_SAMPLE = new Sample(METRONOME)
 
 const METRONOME_GROUP = [
+  METRONOME,
+  METRONOME,
+  METRONOME,
   METRONOME
 ]
 
