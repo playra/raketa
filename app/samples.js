@@ -22,6 +22,7 @@ class Sample {
       this.duration = this.sound.getDuration()
       if ( file === METRONOME ) {
         this.sound.setVolume(1)
+        this.loops = 999
       } else {
         this.sound.setVolume(DEFAULT_VOLUME)
       }
@@ -56,7 +57,7 @@ class Sample {
 
   stop () {
     console.log('sample stop')
-    this.sound.stop().release()
+    this.sound.stop()
     this.timesPlayed = 0
     this.loops = 0
   }
@@ -135,8 +136,8 @@ const S4_HATS_PERCS = 'S4_HATS_PERCS.wav'
 const GROUP_2 = [
   S1_MIN_HATS,
   S2_HATS_CLICKS,
-  S3_HATS,
-  S4_HATS_PERCS,
+  //S3_HATS,
+ // S4_HATS_PERCS,
 ]
 
 // G3
@@ -191,7 +192,7 @@ const S4_SHORT_PAD = 'S4_SHORT_PAD.wav'
 const S_E_GT_S = 'S_ElectroGT_Solo.wav'
 
 const GROUP_5 = [
-  S1_CHORDS_G5,
+  //S1_CHORDS_G5,
   S1_PADG5,
   S2_PADG5,
   S3_PAD_THEME,
@@ -273,7 +274,7 @@ const GROUPS = [
   GROUP_5,
   GROUP_6,
   GROUP_7,
-  METRONOME_GROUP
+  //METRONOME_GROUP
   //GROUP_8
 ]
 
