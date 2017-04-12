@@ -1,0 +1,1 @@
+export const formatDuration = (duration) => (duration/1000).toFixed(2) + ' s'

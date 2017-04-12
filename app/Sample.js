@@ -1,41 +1,39 @@
 import Sound from 'react-native-sound'
-import { DEFAULT_VOLUME, METRONOME } from './constants'
+import { DEFAULT_VOLUME } from './constants'
+import {
+  formatDuration
+} from './helpers'
 
 Sound.enableInSilenceMode(true)
 
+// todo math for duration/loops factor
 export default class Sample {
 
   constructor (file, loops = 0) {
-
-    this.file = file
-
+    this.filename = file
     this.sound = new Sound(file, Sound.MAIN_BUNDLE, error => {
       if (error) {
         console.log(`failed to load sample: ${file}`)
         return
       }
 
-      this.duration = Math.round(this.sound.getDuration() * 1000)
+      const sampleDuration = this.sound.getDuration()
+      this.duration = Math.round(sampleDuration * 1000)
       this.sound.setNumberOfLoops(-1)
       this.sound.setVolume(0)
       this.sound.play(() => {})
     })
 
-
     this.loops = loops
     this.timesPlayed = 0
+    this.timeout = null
   }
 
-  play (onEnd, gap = 0 /* start time in ms */) {
-    const startTime = Date.now()
+  play (onEnd) {
     this.sound.setVolume(DEFAULT_VOLUME)
+    this.sound.setCurrentTime(0)
 
     const callback = () => {
-      const volume = this.sound.getVolume()
-      if ( volume === 0 ) {
-       // return
-      }
-
       this.timesPlayed++
 
       if (this.timesPlayed == this.loops + 1) {
@@ -44,19 +42,23 @@ export default class Sample {
         // change sample
         onEnd()
       } else {
-        console.log(`${this.file} played ${this.timesPlayed} times, need ${this.loops - this.timesPlayed + 1} more`)
-
-        const endTime = Date.now()
-        console.log( `gap between is ${endTime - startTime}`)
+        console.log(`${this.filename} played ${this.timesPlayed} times, need ${this.loops - this.timesPlayed + 1} more`)
         this.play(callback)
       }
     }
 
-    setTimeout( callback, this.duration )
+    this.timeout = setTimeout(callback, this.duration)
+  }
+
+  getStatus() {
+    const {filename, duration = 0, loops = 0} = this
+    return `${filename}:  ${loops+1} times left (${formatDuration(duration)})`
   }
 
   stop () {
     console.log('sample stop')
+
+    clearTimeout(this.timeout)
 
     this.sound.setVolume(0)
     this.timesPlayed = 0

@@ -212,7 +212,7 @@ const getRandomSample = (group, groupIndex) => {
   }
 }
 
-export const countSilence = samples => samples.reduce((count, sample) => count + (sample.file === SILENCE ? 1 : 0), 0)
+export const countSilence = samples => samples.reduce((count, sample) => count + (sample.filename === SILENCE ? 1 : 0), 0)
 export const getRandomSamplesArray = () => GROUPS_PRELOADED.map(getRandomSample)
 export const getRandomSampleFromGroup = (groupIndex) => getRandomSample(GROUPS_PRELOADED[groupIndex], groupIndex)
 

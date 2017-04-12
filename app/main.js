@@ -5,7 +5,7 @@ import {
 } from 'react-native'
 
 import styles from './styles'
-import * as Animatable from 'react-native-animatable'
+import { View as AniView } from 'react-native-animatable'
 
 import {
   getRandomSamplesArray,
@@ -17,7 +17,7 @@ import RocketButton from './components/RocketButton'
 
 export default class MainView extends Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props)
     setTimeout(() => this.setState({isEnabled: true}), 4000)
   }
@@ -29,7 +29,6 @@ export default class MainView extends Component {
     isEnabled: false
   }
 
-
   playSound = () => {
     const {currentSamples, playing} = this.state
 
@@ -38,7 +37,7 @@ export default class MainView extends Component {
     // make sum beatz
     const newSamples = getRandomSamplesArray()
     // show whats playing
-    console.log(`now playing: ${newSamples.map(sample => sample.file)}`)
+    console.log(`now playing: ${newSamples.map(sample => sample.filename)}`)
 
     this.setState(
       {
@@ -63,7 +62,7 @@ export default class MainView extends Component {
       currentSamples[groupIndex] = nextSample
 
       this.setState({currentSamples}, () => {
-        console.log(`group: ${groupIndex}, sample changed from ${sample.file} to ${nextSample.file}, loops: ${loops + 1}, duration: ${nextSample.duration}`)
+        console.log(`group: ${groupIndex}, sample changed from ${sample.filename} to ${nextSample.filename}, loops: ${loops + 1}, duration: ${nextSample.duration}`)
       })
 
       this.playSample(nextSample, groupIndex)
@@ -95,20 +94,18 @@ export default class MainView extends Component {
     const {currentSamples} = this.state
 
     const textStyle = {
-      fontSize: 12, color: 'white', paddingLeft: 5
+      fontSize: 12,
+      color: 'white',
+      textAlign: 'right'
     }
 
     const viewStyle = {
-      width: 500, height: 20
+      width: 300, height: 20
     }
 
-    return currentSamples.map((sample, index) => {
-      const {file, duration = 0, loops = 0} = sample
-
-      return <View style={viewStyle} key={index}>
-        <Text style={textStyle}>{file}, dur: {duration} ms, loops: {loops}</Text>
-      </View>
-    })
+    return currentSamples.map((sample, index) => (<View style={viewStyle} key={index}>
+      <Text style={textStyle}>{sample.getStatus()}</Text>
+    </View>))
   }
 
   render () {
@@ -116,17 +113,17 @@ export default class MainView extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={{padding: 40, height: 200}}>
+        <View style={{padding: 20, paddingTop: 40, paddingLeft: 10, height: 200}}>
           {this.renderSamplesInfo()}
         </View>
-        <Animatable.View
+        <AniView
           animation="pulse"
           easing="ease-in"
           iterationCount="infinite"
           direction="alternate-reverse"
         >
           <RocketButton onClick={this.toggleSound} enabled={isEnabled}/>
-        </Animatable.View>
+        </AniView>
       </View>)
   }
 
