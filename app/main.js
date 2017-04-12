@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {
-  TouchableOpacity,
   Text,
   View
 } from 'react-native'
@@ -9,32 +8,12 @@ import styles from './styles'
 import * as Animatable from 'react-native-animatable'
 
 import {
-  SILENCE_RATIO,
-  SILENCE_GAP
-} from './constants'
-
-import {
   getRandomSamplesArray,
   getRandomSampleFromGroup,
-  getSilenceSample,
-  countSilence,
-  METRONOME_SAMPLE
+  countSilence
 } from './samples'
 
 import RocketButton from './components/RocketButton'
-
-
-/*const pingMetronome = () => METRONOME_SAMPLE.play(()=>{
-  console.log( 'play metronome sound')
-  METRONOME_SAMPLE.stop()
-  setTimeout(pingMetronome, 272)
-})
-
-setTimeout(
-  () => {
-    pingMetronome()
-  }, 1500)*/
-
 
 export default class MainView extends Component {
 
