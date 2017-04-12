@@ -46,6 +46,7 @@ export default class MainView extends Component {
   playSample (sample, groupIndex) {
     let {currentSamples} = this.state
     const silenceCount = countSilence(currentSamples)
+
     console.log(`there is ${silenceCount} silence samples`)
 
     const onEnd = (success) => {

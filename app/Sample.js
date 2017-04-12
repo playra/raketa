@@ -13,45 +13,48 @@ export default class Sample {
         return
       }
 
-      this.duration = this.sound.getDuration()
-      if ( file === METRONOME ) {
-        this.sound.setVolume(1)
-        this.loops = 999
-      } else {
-        this.sound.setVolume(DEFAULT_VOLUME)
-      }
-      // console.log(`sample loaded: ${file}, duration: ${this.duration}`)
+      this.duration = Math.round(this.sound.getDuration() * 1000)
+      this.sound.setNumberOfLoops(-1)
+      this.sound.setVolume(0)
+      this.sound.play(() => {})
     })
 
-    this.sound.setNumberOfLoops(loops)
 
     this.loops = loops
     this.timesPlayed = 0
   }
 
   play (onEnd, gap = 0 /* start time in ms */) {
+    const startTime = Date.now()
+    this.sound.setVolume(DEFAULT_VOLUME)
 
-    const callback = () => {
+    function callback() {
+      const volume = this.sound.getVolume()
+      if ( volume === 0 ) return
+
       this.timesPlayed++
 
       if (this.timesPlayed == this.loops + 1) {
         console.log('sample onEnd callback')
         this.stop()
+        // change sample
         onEnd()
       } else {
         console.log(`${this.file} played ${this.timesPlayed} times, need ${this.loops - this.timesPlayed + 1} more`)
-        // this.sound.stop().release()
-        this.sound.play(callback)
+
+        const endTime = Date.now()
+        console.log( `gap between is ${endTime - startTime}`)
+        this.play(callback)
       }
     }
 
-    //this.sound.setCurrentTime(gap / 1000) // set playgap
-    this.sound.play(callback)
+    setTimeout( callback.bind(this), this.duration )
   }
 
   stop () {
     console.log('sample stop')
-    this.sound.stop()
+
+    this.sound.setVolume(0)
     this.timesPlayed = 0
     this.loops = 0
   }

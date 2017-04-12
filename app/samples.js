@@ -171,7 +171,7 @@ const GROUP_7 = [
 //  S1_N_A,
   S2_FX,
   S3_FX,
-  S3_PERCUSSION,
+ // S3_PERCUSSION,
   S7_FX,
   S_I_FX,
 ]
