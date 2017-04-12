@@ -17,6 +17,7 @@ export const getSilenceSample = () => {
     loops: 0,
     timeout: null,
     file: SILENCE,
+    getVolume: () => 1,
     play(onEnd){
       console.log(`silence play`)
       this.timeout = setTimeout(

@@ -29,7 +29,8 @@ export default class Sample {
     this.sound.setVolume(DEFAULT_VOLUME)
 
     function callback() {
-      const volume = this.sound.getVolume()
+      const volume = !!this.sound ? this.sound.getVolume() : 0
+
       if ( volume === 0 ) return
 
       this.timesPlayed++
