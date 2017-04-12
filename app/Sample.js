@@ -1,6 +1,8 @@
 import Sound from 'react-native-sound'
 import { DEFAULT_VOLUME, METRONOME } from './constants'
 
+Sound.enableInSilenceMode(true)
+
 export default class Sample {
 
   constructor (file, loops = 0) {
@@ -28,10 +30,11 @@ export default class Sample {
     const startTime = Date.now()
     this.sound.setVolume(DEFAULT_VOLUME)
 
-    function callback() {
-      const volume = !!this.sound ? this.sound.getVolume() : 0
-
-      if ( volume === 0 ) return
+    const callback = () => {
+      const volume = this.sound.getVolume()
+      if ( volume === 0 ) {
+       // return
+      }
 
       this.timesPlayed++
 
@@ -49,7 +52,7 @@ export default class Sample {
       }
     }
 
-    setTimeout( callback.bind(this), this.duration )
+    setTimeout( callback, this.duration )
   }
 
   stop () {

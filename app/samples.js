@@ -5,36 +5,9 @@ import {
 
 import Sample from './Sample'
 
-export const METRONOME_SAMPLE = new Sample(METRONOME)
 // test loop
 const TABLA = 'TABLA.wav'
 export const SILENCE = 'silence.aif'
-
-// emulate silence
-export const getSilenceSample = () => {
-  return {
-    duration: 69.81818594104308,
-    loops: 0,
-    timeout: null,
-    file: SILENCE,
-    getVolume: () => 1,
-    play(onEnd){
-      console.log(`silence play`)
-      this.timeout = setTimeout(
-        () => {
-          console.log(`silence onEnd callback`)
-          onEnd()
-        },
-        this.duration * 1000
-      )
-    },
-    stop(){
-      console.log(`silence emulation stop`)
-      clearTimeout(this.timeout)
-    },
-    setLoops(){}
-  }
-}
 
 // G1
 const S1_CRASH_FILL_BD_SN = 'S1_CRASH_FILL_BD_SN.wav'
@@ -73,9 +46,9 @@ const S4_HATS_PERCS = 'S4_HATS_PERCS.wav'
 
 const GROUP_2 = [
   S1_MIN_HATS,
- // S2_HATS_CLICKS,
+  // S2_HATS_CLICKS,
   //S3_HATS,
- // S4_HATS_PERCS,
+  // S4_HATS_PERCS,
 ]
 
 // G3
@@ -172,7 +145,7 @@ const GROUP_7 = [
 //  S1_N_A,
   S2_FX,
   S3_FX,
- // S3_PERCUSSION,
+  // S3_PERCUSSION,
   S7_FX,
   S_I_FX,
 ]
@@ -198,6 +171,9 @@ const GROUP_8 = [
   SUB_HATS,
 ]
 
+const SILENCE_GROUP = [
+  SILENCE
+]
 
 const METRONOME_GROUP = [
   METRONOME
@@ -212,19 +188,32 @@ const GROUPS = [
   GROUP_5,
   GROUP_6,
   GROUP_7,
+  SILENCE_GROUP
   //METRONOME_GROUP
   //GROUP_8
 ]
 
-
-
 // preload samples
 const GROUPS_PRELOADED = GROUPS.map(group => group.map(file => new Sample(file)))
+const GROUPS_SILENCE = GROUPS.map(group => new Sample(SILENCE))
 
 const getRandomNumber = group => Math.floor(Math.random() * group.length)
-const getRandomSample = group => group.length === 1 ? group[0] : Math.random() <= SILENCE_RATIO ? getSilenceSample() : group[getRandomNumber(group)]
+const getRandomSample = (group, groupIndex) => {
+
+  if (group.length === 1) {
+    // if metronome (deprecated?)
+    return group[0]
+  } else {
+    if (Math.random() <= SILENCE_RATIO) {
+      return GROUPS_SILENCE[groupIndex]
+    } else {
+      return group[getRandomNumber(group)]
+    }
+  }
+}
+
 export const countSilence = samples => samples.reduce((count, sample) => count + (sample.file === SILENCE ? 1 : 0), 0)
 export const getRandomSamplesArray = () => GROUPS_PRELOADED.map(getRandomSample)
-export const getRandomSampleFromGroup = (groupIndex) => getRandomSample(GROUPS_PRELOADED[groupIndex])
+export const getRandomSampleFromGroup = (groupIndex) => getRandomSample(GROUPS_PRELOADED[groupIndex], groupIndex)
 
 export default GROUPS

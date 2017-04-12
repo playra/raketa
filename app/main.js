@@ -45,9 +45,8 @@ export default class MainView extends Component {
   // todo rewrite with generators in groups
   playSample (sample, groupIndex) {
     let {currentSamples} = this.state
-    const silenceCount = countSilence(currentSamples)
 
-    console.log(`there is ${silenceCount} silence samples`)
+    console.log(`there is ${countSilence(currentSamples)} silence samples`)
 
     const onEnd = (success) => {
       const loops = Math.round(Math.random() * 2) // 0...3
@@ -100,7 +99,7 @@ export default class MainView extends Component {
       const {file, duration = 0, loops = 0} = sample
 
       return <View style={viewStyle} key={index}>
-        <Text style={textStyle}>{file}, dur: {duration.toFixed(4)}, loops: {loops}</Text>
+        <Text style={textStyle}>{file}, dur: {duration} ms, loops: {loops}</Text>
       </View>
     })
   }
