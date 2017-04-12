@@ -17,11 +17,18 @@ import RocketButton from './components/RocketButton'
 
 export default class MainView extends Component {
 
+  constructor(props) {
+    super(props)
+    setTimeout(() => this.setState({isEnabled: true}), 4000)
+  }
+
   state = {
     playing: false,
     volume: 0.5,
-    currentSamples: []
+    currentSamples: [],
+    isEnabled: false
   }
+
 
   playSound = () => {
     const {currentSamples, playing} = this.state
@@ -105,6 +112,7 @@ export default class MainView extends Component {
   }
 
   render () {
+    const {isEnabled} = this.state
 
     return (
       <View style={styles.container}>
@@ -117,7 +125,7 @@ export default class MainView extends Component {
           iterationCount="infinite"
           direction="alternate-reverse"
         >
-          <RocketButton onClick={this.toggleSound}/>
+          <RocketButton onClick={this.toggleSound} enabled={isEnabled}/>
         </Animatable.View>
       </View>)
   }

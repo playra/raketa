@@ -9,15 +9,15 @@ import styles from '../styles'
 
 const Icon = createIconSetFromFontello(fontelloConfig)
 
-const Button = ({onClick}) => (
+const Button = ({onClick, enabled = false}) => (
   <TouchableOpacity
     style={styles.play}
-    onPress={onClick}
+    onPress={enabled ? onClick : () => {}}
   >
     <Icon
       name="play"
       size={120}
-      color="#EF2B47"
+      color={enabled ? "#EF2B47" : "#CCCCCC"}
     />
   </TouchableOpacity>)
 
