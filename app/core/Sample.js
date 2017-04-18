@@ -1,8 +1,12 @@
 import Sound from 'react-native-sound'
-import { DEFAULT_VOLUME } from './constants'
+import {
+  DEFAULT_VOLUME,
+  FADE_DURATION
+} from '../constants'
+
 import {
   formatDuration
-} from './helpers'
+} from '../helpers'
 
 Sound.enableInSilenceMode(true)
 
@@ -29,8 +33,55 @@ export default class Sample {
     this.timeout = null
   }
 
+  fadeIn () {
+
+    const volume = this.sound.getVolume()
+
+    //   if (volume === 0) {
+    const MIN_DELAY = 20
+    const steps = Math.round(FADE_DURATION / MIN_DELAY)
+    console.log(`fading to volume = 1 with ${steps} steps`)
+
+    // todo easing
+    for (let i = 0; i < steps; i++) {
+      const newVolume = (1 / steps) * i
+      setTimeout(
+        () => {
+          this.sound.setVolume(newVolume)
+        },
+        i * MIN_DELAY
+      )
+    }
+    //   }
+  }
+
+  fadeOut () {
+    const volume = this.sound.getVolume()
+
+    //  if (volume > 0) {
+    const MIN_DELAY = 20
+    const steps =  Math.round(FADE_DURATION / MIN_DELAY)
+    console.log(`fading to volume = 0 with ${steps} steps`)
+
+    // todo easing
+    for (let i = 1; i <= steps; i++) {
+      const newVolume = 1 - (1 / steps) * i
+      setTimeout(
+        () => {
+          this.sound.setVolume(newVolume)
+        },
+        i * MIN_DELAY
+      )
+    }
+    // }
+  }
+
   play (onEnd) {
-    this.sound.setVolume(DEFAULT_VOLUME)
+    //this.sound.setVolume(DEFAULT_VOLUME)
+    if ( this.sound.getVolume() === 0 ) {
+      this.fadeIn()
+    }
+
     this.sound.setCurrentTime(0)
 
     const callback = () => {
@@ -50,9 +101,9 @@ export default class Sample {
     this.timeout = setTimeout(callback, this.duration)
   }
 
-  getStatus() {
+  getStatus () {
     const {filename, duration = 0, loops = 0} = this
-    return `${filename}:  ${loops+1} times left (${formatDuration(duration)})`
+    return `${filename}:  ${loops + 1} times left (${formatDuration(duration)})`
   }
 
   stop () {
@@ -60,7 +111,8 @@ export default class Sample {
 
     clearTimeout(this.timeout)
 
-    this.sound.setVolume(0)
+    //this.sound.setVolume(0)
+    this.fadeOut()
     this.timesPlayed = 0
     this.loops = 0
   }

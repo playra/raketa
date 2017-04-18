@@ -3,7 +3,7 @@ import {
   METRONOME
 } from './constants'
 
-import Sample from './Sample'
+import Sample from './core/Sample'
 
 // test loop
 const TABLA = 'TABLA.wav'

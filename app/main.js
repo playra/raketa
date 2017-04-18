@@ -55,7 +55,7 @@ export default class MainView extends Component {
     console.log(`there is ${countSilence(currentSamples)} silence samples`)
 
     const onEnd = (success) => {
-      const loops = Math.round(Math.random() * 2) // 0...3
+      const loops = Math.round(Math.random() * 6) // 0...3
 
       let nextSample = getRandomSampleFromGroup(groupIndex)
       nextSample.setLoops(loops)
