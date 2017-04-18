@@ -40,12 +40,12 @@ const Bass_125Bpm_Laden_Amin_02 = 'Bass_125Bpm_Laden_Amin_02.wav'
 const Bass_125Bpm_Laden_Amin_03 = 'Bass_125Bpm_Laden_Amin_03.wav'
 
 const GROUP_2 = [
-  HATS1,
-  HATS1,
-  HATS1,
-  HATS1
-  // Bass_125Bpm_Atmung_Cmin_01,
-  // Bass_125Bpm_Ghem_Amin_01,
+  // HATS1,
+  // HATS1,
+  // HATS1,
+  // HATS1
+  Bass_125Bpm_Atmung_Cmin_01,
+  Bass_125Bpm_Ghem_Amin_01,
   // Bass_125Bpm_Hotel_Emin_03,
   // Bass_125Bpm_Kom_Gmin_03,
   // Bass_125Bpm_Laden_Amin_01,
@@ -174,7 +174,7 @@ const METRONOME_GROUP = [
 // todo LOOP GAP PER GROUP
 const GROUPS = [
   GROUP_1,
-  // GROUP_2,
+  GROUP_2,
   // GROUP_3,
   // GROUP_4,
   // GROUP_5,
