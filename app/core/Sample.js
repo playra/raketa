@@ -1,7 +1,8 @@
 import Sound from 'react-native-sound'
 import {
   DEFAULT_VOLUME,
-  FADE_DURATION
+  FADE_DURATION,
+  FADE_STEP_DELAY
 } from '../constants'
 
 import {
@@ -36,49 +37,34 @@ export default class Sample {
   fadeIn () {
 
     const volume = this.sound.getVolume()
-
-    //   if (volume === 0) {
-    const MIN_DELAY = 20
-    const steps = Math.round(FADE_DURATION / MIN_DELAY)
+    const steps = Math.round(FADE_DURATION / FADE_STEP_DELAY)
     console.log(`fading to volume = 1 with ${steps} steps`)
 
     // todo easing
-    for (let i = 0; i < steps; i++) {
+    for (let i = 1; i <= steps; i++) {
       const newVolume = (1 / steps) * i
-      setTimeout(
-        () => {
-          this.sound.setVolume(newVolume)
-        },
-        i * MIN_DELAY
-      )
+      const timeout = i * FADE_STEP_DELAY
+      setTimeout(() => this.sound.setVolume(newVolume), timeout)
     }
-    //   }
   }
 
   fadeOut () {
     const volume = this.sound.getVolume()
 
-    //  if (volume > 0) {
-    const MIN_DELAY = 20
-    const steps =  Math.round(FADE_DURATION / MIN_DELAY)
+    const steps = Math.round(FADE_DURATION / FADE_STEP_DELAY)
     console.log(`fading to volume = 0 with ${steps} steps`)
 
     // todo easing
     for (let i = 1; i <= steps; i++) {
       const newVolume = 1 - (1 / steps) * i
-      setTimeout(
-        () => {
-          this.sound.setVolume(newVolume)
-        },
-        i * MIN_DELAY
-      )
+      const timeout = i * FADE_STEP_DELAY
+      setTimeout(() => this.sound.setVolume(newVolume), timeout)
     }
-    // }
   }
 
   play (onEnd) {
-    //this.sound.setVolume(DEFAULT_VOLUME)
-    if ( this.sound.getVolume() === 0 ) {
+
+    if (this.sound.getVolume() === 0) {
       this.fadeIn()
     }
 
@@ -111,8 +97,10 @@ export default class Sample {
 
     clearTimeout(this.timeout)
 
-    //this.sound.setVolume(0)
-    this.fadeOut()
+    if ( this.sound.getVolume() > 0 ) {
+      this.fadeOut()
+    }
+
     this.timesPlayed = 0
     this.loops = 0
   }

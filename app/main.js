@@ -54,6 +54,7 @@ export default class MainView extends Component {
 
     console.log(`there is ${countSilence(currentSamples)} silence samples`)
 
+    // todo CROSSfade
     const onEnd = (success) => {
       const loops = Math.round(Math.random() * 6) // 0...3
 

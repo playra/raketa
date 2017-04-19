@@ -3,4 +3,5 @@
 export const SILENCE_RATIO = .3
 export const DEFAULT_VOLUME = 1 // TODO move to settings
 export const FADE_DURATION = 150 // in MS
+export const FADE_STEP_DELAY = 20 // in MS
 export const METRONOME = 'Metronom.aif'
