@@ -12,156 +12,126 @@ const HATS1 = 'HATS1.m4a'
 export const SILENCE = 'silence.aif'
 
 // G1
-const Drums_125Bpm_Ghimp_01 = 'Drums_125Bpm_Ghimp_01.wav'
-const Drums_125Bpm_Homer_01 = 'Drums_125Bpm_Homer_01.wav'
-const Drums_125Bpm_Kanister_01 = 'Drums_125Bpm_Kanister_01.wav'
-const Drums_125Bpm_Loof_01 = 'Drums_125Bpm_Loof_01.wav'
-const Drums_125Bpm_Tumpel_01 = 'Drums_125Bpm_Tumpel_01.wav'
-const Drums_125Bpm_Veilchen_01 = 'Drums_125Bpm_Veilchen_01.wav'
-const Drums_125Bpm_Veilchen_02 = 'Drums_125Bpm_Veilchen_02.wav'
+const DR_BASS = 'DR_BASS.m4a'
+const DR_IN_OUT = 'DR_IN_OUT.m4a'
+const DR_KICK_BASS = 'DR_KICK_BASS.m4a'
+const DR_MAIN = 'DR_MAIN.m4a'
 
 const GROUP_1 = [
-  // Drums_125Bpm_Ghimp_01,
-  // Drums_125Bpm_Homer_01,
-  // Drums_125Bpm_Kanister_01,
-  // Drums_125Bpm_Loof_01,
-  // Drums_125Bpm_Tumpel_01,
-  Drums_125Bpm_Veilchen_01,
-  Drums_125Bpm_Veilchen_02
+  DR_BASS,
+  DR_IN_OUT,
+  DR_KICK_BASS,
+  DR_MAIN
 ]
 
 // G2
-const Bass_125Bpm_Atmung_Cmin_01 = 'Bass_125Bpm_Atmung_Cmin_01.wav'
-const Bass_125Bpm_Ghem_Amin_01 = 'Bass_125Bpm_Ghem_Amin_01.wav'
-const Bass_125Bpm_Hotel_Emin_03 = 'Bass_125Bpm_Hotel_Emin_03.wav'
-const Bass_125Bpm_Kom_Gmin_03 = 'Bass_125Bpm_Kom_Gmin_03.wav'
-const Bass_125Bpm_Laden_Amin_01 = 'Bass_125Bpm_Laden_Amin_01.wav'
-const Bass_125Bpm_Laden_Amin_02 = 'Bass_125Bpm_Laden_Amin_02.wav'
-const Bass_125Bpm_Laden_Amin_03 = 'Bass_125Bpm_Laden_Amin_03.wav'
+const BASS_1 = 'BASS_1.m4a'
+const BASS_2 = 'BASS_2.m4a'
+const BASS_3 = 'BASS_3.m4a'
+const BASS_4 = 'BASS_4.m4a'
 
 const GROUP_2 = [
-  // HATS1,
-  // HATS1,
-  // HATS1,
-  // HATS1
-  Bass_125Bpm_Atmung_Cmin_01,
-  Bass_125Bpm_Ghem_Amin_01,
-  // Bass_125Bpm_Hotel_Emin_03,
-  // Bass_125Bpm_Kom_Gmin_03,
-  // Bass_125Bpm_Laden_Amin_01,
-  // Bass_125Bpm_Laden_Amin_02,
-  // Bass_125Bpm_Laden_Amin_03
+  BASS_1,
+  BASS_2,
+  BASS_3,
+  BASS_4
 ]
 
 // G3
-const Chords_125Bpm_Cave_Gmin_03 = 'Chords_125Bpm_Cave_Gmin_03.wav'
-const Chords_125Bpm_Echter_Dmin_01 = 'Chords_125Bpm_Echter_Dmin_01.wav'
-const Chords_125Bpm_Flinte_Fmin_02 = 'Chords_125Bpm_Flinte_Fmin_02.wav'
-const Chords_125Bpm_Flinte_Fmin_03 = 'Chords_125Bpm_Flinte_Fmin_03.wav'
-const Chords_125Bpm_Immer_Dmin_03 = 'Chords_125Bpm_Immer_Dmin_03.wav'
-const Chords_125Bpm_Jacke_Fmin_02 = 'Chords_125Bpm_Jacke_Fmin_02.wav'
+const FX_1 = 'FX_1.m4a'
+const FX_2 = 'FX_2.m4a'
+const FX_3 = 'FX_3.m4a'
+const FX_4 = 'FX_4.m4a'
+const FX_5 = 'FX_5.m4a'
+const FX_6 = 'FX_6.m4a'
 
 const GROUP_3 = [
-  Chords_125Bpm_Cave_Gmin_03,
-  Chords_125Bpm_Echter_Dmin_01,
-  Chords_125Bpm_Flinte_Fmin_02,
-  Chords_125Bpm_Flinte_Fmin_03,
-  Chords_125Bpm_Immer_Dmin_03,
-  Chords_125Bpm_Jacke_Fmin_02
+  FX_1,
+  FX_2,
+  FX_3,
+  FX_4,
+  FX_5,
+  FX_6
 ]
 
 // G4
-const Synth_125Bpm_Atmung_Cmin_01 = 'Synth_125Bpm_Atmung_Cmin_01.wav'
-const Synth_125Bpm_Echter_Dmin_03 = 'Synth_125Bpm_Echter_Dmin_03.wav'
-const Synth_125Bpm_Hotel_Emin_02 = 'Synth_125Bpm_Hotel_Emin_02.wav'
-const Synth_125Bpm_Laden_Amin_01 = 'Synth_125Bpm_Laden_Amin_01.wav'
-const Synth_125Bpm_Offer_Dmin_01 = 'Synth_125Bpm_Offer_Dmin_01.wav'
+const HATS_1 = 'HATS_1.m4a'
+const HATS_2 = 'HATS_2.m4a'
+const HATS_3 = 'HATS_3.m4a'
+const HATS_4 = 'HATS_4.m4a'
 
 const GROUP_4 = [
-  Synth_125Bpm_Atmung_Cmin_01,
-  Synth_125Bpm_Echter_Dmin_03,
-  Synth_125Bpm_Hotel_Emin_02,
-  Synth_125Bpm_Laden_Amin_01,
-  Synth_125Bpm_Offer_Dmin_01
+  HATS_1,
+  HATS_2,
+  HATS_3,
+  HATS_4
 ]
 
-// // G5
-// const S1_CHORDS_G5 = 'S1_ChordsG5.wav'
-// const S1_PADG5 = 'S1_PAD.wav'
-// const S2_PADG5 = 'S2_PADG5.wav'
-// const S3_PAD_THEME = 'S3_PAD_THEME.wav'
-// const S4_PAD = 'S4_PAD.wav'
-// const S4_SHORT_PAD = 'S4_SHORT_PAD.wav'
-// const S_E_GT_S = 'S_ElectroGT_Solo.wav'
-//
-// const GROUP_5 = [
-//   //S1_CHORDS_G5,
-//   S1_PADG5,
-//   S2_PADG5,
-//   S3_PAD_THEME,
-//   S4_PAD,
-//   S4_SHORT_PAD,
-//   S_E_GT_S,
-// ]
-//
-// // G6
-// const KVOX_L_D = 'KVOXfly_long_delay.wav'
-// const S6_VOX = 'S6_VOX.wav'
-// const S2_VOCODERVOICE = 'S2_VOCODERVOICE.wav'
-// const S4_VOCODER_VOICE = 'S4_VOCODER_VOICE.wav'
-// const VOX_N = 'Vox_normal.wav'
-// const VOX_S = 'Vox_stabil.wav'
-// const VOXFLY_L_D = 'VOXfly_long_delay.wav'
-//
-// const GROUP_6 = [
-//   KVOX_L_D,
-//   S6_VOX,
-//   S2_VOCODERVOICE,
-//   S4_VOCODER_VOICE,
-//   VOX_N,
-//   VOX_S,
-//   VOXFLY_L_D,
-// ]
-//
-// // G7
-// const S1_FX = 'S1_FX.wav'
-// const S1_N_A = 'S1_NoiseArp.wav'
-// const S2_FX = 'S2_FX.wav'
-// const S3_FX = 'S3_FX.wav'
-// const S3_PERCUSSION = 'S3_PERCUSSION.wav'
-// const S7_FX = 'S7_FX.wav'
-// const S_I_FX = 'S_IvanFX.wav'
-//
-// const GROUP_7 = [
-//   S1_FX,
-// //  S1_N_A,
-//   S2_FX,
-//   S3_FX,
-//   // S3_PERCUSSION,
-//   S7_FX,
-//   S_I_FX,
-// ]
-//
-// // G8
-// const LOOP_D_H = 'LOOP_Dist_Highpass.wav'
-// const LOOP_M_B_D = 'LOOP_Main_Beat_Dist.wav'
-// const S1_LF_D = 'S1_LoFi_Dr.wav'
-// const S2_DRUMS_LOOP = 'S2_DRUMS_LOOP.wav'
-// const S3_DRUM_LOOP = 'S3_DRUM_LOOP.wav'
-// const S4_DRUM_LOOP = 'S4_DRUM_LOOP.wav'
-// const S4_LOOP_DIST_BEAT = 'S4_LOOP_DIST_BEAT.wav'
-// const SUB_HATS = 'Sub_HATS.wav'
-//
-// const GROUP_8 = [
-//   LOOP_D_H,
-//   LOOP_M_B_D,
-//   S1_LF_D,
-//   S2_DRUMS_LOOP,
-//   S3_DRUM_LOOP,
-//   S4_DRUM_LOOP,
-//   S4_LOOP_DIST_BEAT,
-//   SUB_HATS,
-// ]
+// G5
+const PAD_1 = 'PAD_1.m4a'
+const PAD_2 = 'PAD_2.m4a'
+const PAD_3 = 'PAD_3.m4a'
+const PAD_4 = 'PAD_4.m4a'
+const PAD_5 = 'PAD_5.m4a'
+const PAD_6 = 'PAD_6.m4a'
+
+const GROUP_5 = [
+  PAD_1,
+  PAD_2,
+  PAD_3,
+  PAD_4,
+  PAD_5,
+  PAD_6
+]
+
+// G6
+const PERC_1 = 'PERC_1.m4a'
+const PERC_2 = 'PERC_2.m4a'
+const PERC_3 = 'PERC_3.m4a'
+const PERC_4 = 'PERC_4.m4a'
+const PERC_5 = 'PERC_5.m4a'
+
+const GROUP_6 = [
+  PERC_1,
+  PERC_2,
+  PERC_3,
+  PERC_4,
+  PERC_5
+]
+
+// G7
+const SYNTH_1 = 'SYNTH_1.m4a'
+const SYNTH_2 = 'SYNTH_2.m4a'
+const SYNTH_3 = 'SYNTH_3.m4a'
+const SYNTH_4 = 'SYNTH_4.m4a'
+const SYNTH_5 = 'SYNTH_5.m4a'
+
+const GROUP_7 = [
+  SYNTH_1,
+  SYNTH_2,
+  SYNTH_3,
+  SYNTH_4,
+  SYNTH_5
+]
+
+// G8
+const VOX_1 = 'VOX_1.m4a'
+const VOX_2 = 'VOX_2.m4a'
+const VOX_3 = 'VOX_3.m4a'
+const VOX_4 = 'VOX_4.m4a'
+const VOX_5 = 'VOX_5.m4a'
+const VOX_6 = 'VOX_6.m4a'
+const VOX_7 = 'VOX_7.m4a'
+
+const GROUP_8 = [
+  VOX_1,
+  VOX_2,
+  VOX_3,
+  VOX_4,
+  VOX_5,
+  VOX_6,
+  VOX_7
+]
 
 const SILENCE_GROUP = [
   SILENCE
@@ -175,14 +145,14 @@ const METRONOME_GROUP = [
 const GROUPS = [
   GROUP_1,
   GROUP_2,
-  // GROUP_3,
-  // GROUP_4,
-  // GROUP_5,
-  // GROUP_6,
-  // GROUP_7,
-  //SILENCE_GROUP
+  GROUP_3,
+  GROUP_4,
+  GROUP_5,
+  GROUP_6,
+  GROUP_7,
+  // SILENCE_GROUP
   //METRONOME_GROUP
-  //GROUP_8
+  GROUP_8
 ]
 
 // preload samples
