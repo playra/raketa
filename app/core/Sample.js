@@ -68,7 +68,7 @@ export default class Sample {
       this.fadeIn()
     }
 
-    this.sound.setCurrentTime(0)
+   // this.sound.setCurrentTime(0)
 
     const callback = () => {
       this.timesPlayed++

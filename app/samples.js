@@ -148,7 +148,7 @@ const GROUPS = [
   GROUP_3,
   GROUP_4,
   GROUP_5,
-  GROUP_6,
+ // GROUP_6,
   GROUP_7,
   // SILENCE_GROUP
   //METRONOME_GROUP
