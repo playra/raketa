@@ -7,9 +7,8 @@ import {
 import styles from './styles'
 import { View as AniView } from 'react-native-animatable'
 
-import {
-  getRandomSamplesArray,
-  getRandomSampleFromGroup,
+import GROUPS,
+{
   countSilence
 } from './samples'
 
@@ -25,27 +24,20 @@ export default class MainView extends Component {
   state = {
     playing: false,
     volume: 0.5,
-    currentSamples: [],
+    groups: GROUPS,
     isEnabled: false
   }
 
   playSound = () => {
-    const {currentSamples, playing} = this.state
+    const {groups, playing} = this.state
 
-    // stop all samples
-    currentSamples.length && currentSamples.map(sample => sample.stop())
-    // make sum beatz
-    const newSamples = getRandomSamplesArray()
-    // show whats playing
-    console.log(`now playing: ${newSamples.map(sample => sample.filename)}`)
+    groups.map(group => group.next())
 
-    this.setState(
-      {
-        playing: true,
-        currentSamples: newSamples
-      },
-      () => newSamples.map((sample, groupIndex) => this.playSample(sample, groupIndex))
-    )
+    console.log(`now playing: ${groups.map( ({nowPlaying}) => nowPlaying.getStatus())}`)
+
+    debugger
+
+    this.setState({playing: true})
   }
 
   // todo rewrite with generators in groups
@@ -56,30 +48,30 @@ export default class MainView extends Component {
 
     // todo CROSSfade
     const onEnd = (success) => {
-      const loops = Math.round(Math.random() * 6) // 0...3
+      const loops = Math.round(Math.random() * 8) // 0...8
+      debugger
 
-      let nextSample = getRandomSampleFromGroup(groupIndex)
-      nextSample.setLoops(loops)
-      currentSamples[groupIndex] = nextSample
+      /**let nextSample = getRandomSampleFromGroup(groupIndex)
+       nextSample.setLoops(loops)
+       currentSamples[groupIndex] = nextSample
 
-      this.setState({currentSamples}, () => {
+       this.setState({currentSamples}, () => {
         console.log(`group: ${groupIndex}, sample changed from ${sample.filename} to ${nextSample.filename}, loops: ${loops + 1}, duration: ${nextSample.duration}`)
       })
 
-      this.playSample(nextSample, groupIndex)
+       this.playSample(nextSample, groupIndex)**/
     }
 
     sample.play(onEnd)
   }
 
   stopSound = () => {
-    const {currentSamples} = this.state
+    const {groups} = this.state
 
     // stop all sounds
-    currentSamples.map(sample => sample.stop())
-    console.log('stop looping')
+    groups.map(group => group.mute())
 
-    this.setState({playing: false, currentSamples: []})
+    this.setState({playing: false})
   }
 
   toggleSound = () => {
@@ -92,7 +84,7 @@ export default class MainView extends Component {
   }
 
   renderSamplesInfo () {
-    const {currentSamples} = this.state
+    const {groups} = this.state
 
     const textStyle = {
       fontSize: 12,
@@ -101,11 +93,11 @@ export default class MainView extends Component {
     }
 
     const viewStyle = {
-      width: 300, height: 20
+      width: 300, height: 35
     }
 
-    return currentSamples.map((sample, index) => (<View style={viewStyle} key={index}>
-      <Text style={textStyle}>{sample.getStatus()}</Text>
+    return groups.map( (group, index) => (<View style={viewStyle} key={index}>
+      <Text style={textStyle}>{group.getStatus()}</Text>
     </View>))
   }
 

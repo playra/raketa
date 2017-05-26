@@ -1,135 +1,121 @@
 import {
-  SILENCE_RATIO,
-  METRONOME
+  SILENCE
 } from './constants'
 
-import Sample from './core/Sample'
+import SamplesGroup from './core/Group'
 
-// test loop
-// const TABLA = 'TABLA.wav'
-// const DRUMS1 = 'DRUMS1.m4a'
-// const HATS1 = 'HATS1.m4a'
-export const SILENCE = 'silence.aif'
-
-// G1
+/**
+ * DRUMS GROUP
+ */
 const S5_AFTERBEATISILENCE_16BEATS = 'S5_AFTERBEATISILENCE_16BEATS.m4a'
 const S5_BDBASS_16BEATS = 'S5_BDBASS_16BEATS.m4a'
 const S5_FILLBEAT_32BEATS = 'S5_FILLBEAT_32BEATS.m4a'
 const S5_MAINBEAT_16BEATS = 'S5_MAINBEAT_16BEATS.m4a'
 
-const GROUP_1 = [
-  S5_AFTERBEATISILENCE_16BEATS,
-  S5_BDBASS_16BEATS,
-  S5_FILLBEAT_32BEATS,
-  S5_MAINBEAT_16BEATS
-]
+const DRUMS = new SamplesGroup('DRUMS',
+  [
+    S5_AFTERBEATISILENCE_16BEATS,
+    S5_BDBASS_16BEATS,
+    S5_FILLBEAT_32BEATS,
+    S5_MAINBEAT_16BEATS
+  ])
 
-// G2
+/**
+ * BASS GROUP
+ */
 const S5_BASS1_16BEATS = 'S5_BASS1_16BEATS.m4a'
 const S5_BASS2_32BEATS = 'S5_BASS2_32BEATS.m4a'
 const S5_BASS3_16BEATS = 'S5_BASS3_16BEATS.m4a'
+const BASS = new SamplesGroup('BASS',
+  [
+    S5_BASS1_16BEATS,
+    S5_BASS2_32BEATS,
+    S5_BASS3_16BEATS
+  ], .12)
 
-const GROUP_2 = [
-  S5_BASS1_16BEATS,
-  S5_BASS2_32BEATS,
-  S5_BASS3_16BEATS
-]
-
-// G3
+/**
+ * HIGH HATS GROUP
+ */
 const S5_HATS1_16BEATS = 'S5_HATS1_16BEATS.m4a'
 const S5_HATS2_16BEATS = 'S5_HATS2_16BEATS.m4a'
+const HATS = new SamplesGroup('HATS',
+  [
+    S5_HATS1_16BEATS,
+    S5_HATS2_16BEATS
+  ], .12)
 
-const GROUP_3 = [
-  S5_HATS1_16BEATS,
-  S5_HATS2_16BEATS
-]
-
-// G4
+/**
+ * CHORDS GROUP
+ */
 const S5_CHORDS1_32BEATS = 'S5_CHORDS1_32BEATS.m4a'
 const S5_CHORDS3_32BEATS = 'S5_CHORDS3_32BEATS.m4a'
 const S5_CHORDS_32BEATS = 'S5_CHORDS_32BEATS.m4a'
 
-const GROUP_4 = [
-  S5_CHORDS1_32BEATS,
-  S5_CHORDS3_32BEATS,
-  S5_CHORDS_32BEATS
-]
+const CHORDS = new SamplesGroup(
+  'CHORDS',
+  [
+    S5_CHORDS1_32BEATS,
+    S5_CHORDS3_32BEATS,
+    S5_CHORDS_32BEATS
+  ])
 
-// G5
 const S5_SYNTH1_16BEATS = 'S5_SYNTH1_16BEATS.m4a'
 const S5_SYNTH2_32BEATS = 'S5_SYNTH2_32BEATS.m4a'
 
-const GROUP_5 = [
-  S5_SYNTH1_16BEATS,
-  S5_SYNTH2_32BEATS
-]
+const SYNTH = new SamplesGroup('SYNTH',
+  [
+    S5_SYNTH1_16BEATS, // Synth1 15%
+    S5_SYNTH2_32BEATS  // Synth2 25%
+  ], .15)
 
-// G6
+/**
+ * PERCUSSION GROUP
+ */
 const S5_PERC1_16BEATS = 'S5_PERC1_16BEATS.m4a'
 
-const GROUP_6 = [
-  S5_PERC1_16BEATS
-]
+const PERC = new SamplesGroup('PERC',
+  [
+    S5_PERC1_16BEATS
+  ], .3)
 
-// G7
+/**
+ * FX GROUP
+ */
 const S5_FX_32BEATS = 'S5_FX_32BEATS.m4a'
+const FX = new SamplesGroup('FX',
+  [
+    S5_FX_32BEATS
+  ], .7)
 
-const GROUP_7 = [
-  S5_FX_32BEATS
-]
-
-// G8
+/**
+ * VOX GROUP
+ */
 const S5_VOX1_32BEATS = 'S5_VOX1_32BEATS.m4a'
 const S5_VOX2_16BEATS = 'S5_VOX2_16BEATS.m4a'
-
-const GROUP_8 = [
-  S5_VOX1_32BEATS,
-  S5_VOX2_16BEATS
-]
-
-// const SILENCE_GROUP = [
-//  SILENCE
-// ]
-
-// const METRONOME_GROUP = [
-// METRONOME
-// ]
+const VOX = new SamplesGroup('VOX',
+  [
+    S5_VOX1_32BEATS,
+    S5_VOX2_16BEATS
+  ], .9)
 
 // todo LOOP GAP PER GROUP
 const GROUPS = [
-  GROUP_1,
-  GROUP_2,
-  GROUP_3,
-  GROUP_4,
-  GROUP_5,
-  GROUP_6,
-  GROUP_7,
+
+  DRUMS,
+  BASS,
+  HATS,
+  CHORDS,
+  SYNTH,
+  PERC,
+  FX,
+
   // SILENCE_GROUP
   // METRONOME_GROUP
-  GROUP_8
+
+  VOX
 ]
 
-// preload samples
-const GROUPS_PRELOADED = GROUPS.map(group => group.map(file => new Sample(file)))
-const GROUPS_SILENCE = GROUPS.map(group => new Sample(SILENCE))
-
-const getRandomNumber = group => Math.floor(Math.random() * group.length)
-const getRandomSample = (group, groupIndex) => {
-
-  if (group.length === 1) {
-    // if metronome (deprecated?)
-    return group[0]
-  } else {
-    if (Math.random() <= SILENCE_RATIO) {
-      return GROUPS_SILENCE[groupIndex]
-    } else {
-      return group[getRandomNumber(group)]
-    }
-  }
-}
-
 export const countSilence = samples => samples.reduce((count, sample) => count + (sample.filename === SILENCE ? 1 : 0), 0)
-export const getRandomSamplesArray = () => GROUPS_PRELOADED.map(getRandomSample)
-export const getRandomSampleFromGroup = (groupIndex) => getRandomSample(GROUPS_PRELOADED[groupIndex], groupIndex)
+export const getRandomSamplesArray = () => GROUPS.map(group => group.getRandomSample())
 
 export default GROUPS
