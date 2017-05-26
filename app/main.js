@@ -29,40 +29,11 @@ export default class MainView extends Component {
   }
 
   playSound = () => {
-    const {groups, playing} = this.state
+    const {groups} = this.state
 
     groups.map(group => group.next())
 
-    console.log(`now playing: ${groups.map( ({nowPlaying}) => nowPlaying.getStatus())}`)
-
-    debugger
-
     this.setState({playing: true})
-  }
-
-  // todo rewrite with generators in groups
-  playSample (sample, groupIndex) {
-    let {currentSamples} = this.state
-
-    console.log(`there is ${countSilence(currentSamples)} silence samples`)
-
-    // todo CROSSfade
-    const onEnd = (success) => {
-      const loops = Math.round(Math.random() * 8) // 0...8
-      debugger
-
-      /**let nextSample = getRandomSampleFromGroup(groupIndex)
-       nextSample.setLoops(loops)
-       currentSamples[groupIndex] = nextSample
-
-       this.setState({currentSamples}, () => {
-        console.log(`group: ${groupIndex}, sample changed from ${sample.filename} to ${nextSample.filename}, loops: ${loops + 1}, duration: ${nextSample.duration}`)
-      })
-
-       this.playSample(nextSample, groupIndex)**/
-    }
-
-    sample.play(onEnd)
   }
 
   stopSound = () => {
@@ -89,7 +60,7 @@ export default class MainView extends Component {
     const textStyle = {
       fontSize: 12,
       color: 'white',
-      textAlign: 'right'
+      textAlign: 'left'
     }
 
     const viewStyle = {

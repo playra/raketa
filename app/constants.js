@@ -5,3 +5,4 @@ export const DEFAULT_VOLUME = 1 // TODO move to settings
 export const FADE_DURATION = 150 // in MS
 export const FADE_STEP_DELAY = 20 // in MS
 export const SILENCE = 'silence.aif'
+export const LOOPS_DEFAULT = 7
