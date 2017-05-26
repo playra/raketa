@@ -23,16 +23,17 @@ export default class SamplesGroup {
   next = () => {
 
     const { nowPlaying, silenceRatio, samples } = this
+    let nextSample = this.silence
 
     if ( nowPlaying ) {
       nowPlaying.stop()
     }
 
     // todo crossfade
-    const nextSample = Math.random() > silenceRatio ? getRandomValue(samples) : this.silence
-    const loops = LOOPS_DEFAULT
-
-    nextSample.setLoops(loops)
+    if (Math.random() > silenceRatio) {
+      nextSample = getRandomValue(samples)
+      nextSample.setLoops(LOOPS_DEFAULT)
+    }
 
     nextSample.play( this.next )
 
