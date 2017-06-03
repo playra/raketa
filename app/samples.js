@@ -2,7 +2,8 @@ import {
   SILENCE
 } from './constants'
 
-import SamplesGroup from './core/Group'
+import SamplesGroup, { ORDER_QUEUE, ORDER_SHUFFLE } from './core/Group'
+import Sample from './core/Sample'
 
 /**
  * DRUMS GROUP
@@ -11,6 +12,12 @@ const S5_AFTERBEATISILENCE_16BEATS = 'S5_AFTERBEATISILENCE_16BEATS.m4a'
 const S5_BDBASS_16BEATS = 'S5_BDBASS_16BEATS.m4a'
 const S5_FILLBEAT_32BEATS = 'S5_FILLBEAT_32BEATS.m4a'
 const S5_MAINBEAT_16BEATS = 'S5_MAINBEAT_16BEATS.m4a'
+
+const SMART_BEATS = new SamplesGroup('SMART BEATS', [
+  new Sample(S5_AFTERBEATISILENCE_16BEATS, 1),
+  new Sample(SILENCE, 2),
+  new Sample(S5_FILLBEAT_32BEATS, 1)
+], 0, ORDER_QUEUE)
 
 const DRUMS = new SamplesGroup('DRUMS',
   [
@@ -102,8 +109,9 @@ const VOX = new SamplesGroup('VOX',
 const GROUPS = [
 
   DRUMS,
+  SMART_BEATS,
   BASS,
-  HATS,
+//  HATS,
   CHORDS,
   SYNTH,
   PERC,
