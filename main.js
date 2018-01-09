@@ -211,32 +211,9 @@ const G8 = [
 // ];
 
 export default class MainView extends Component {
-  constructor(props) {
-    super(props);
-    this.playSound = this.playSound.bind(this);
-    this.stopSound = this.stopSound.bind(this);
-    this.state = {
-      playStatus: false,
-      vol: 0.5,
-    };
-    console.log('constructor');
-  }
-
-  componentWillMount() {
-    console.log('componentWillMount()');
-  }
-
-  componentDidMount() {
-    console.log('componentDidMount()');
-  }
-
-  componentWillReceiveProps() {
-    console.log('componentWillReceiveProps()');
-  }
-
-  shouldComponentUpdate() {
-    console.log('shouldComponentUpdate()');
-    return true;
+  state = {
+    playStatus: false,
+    vol: 0.5,
   }
 
   componentWillUpdate() {
@@ -248,14 +225,6 @@ export default class MainView extends Component {
     G6.forEach(p => p.stop());
     G7.forEach(p => p.stop());
     G8.forEach(p => p.stop());
-  }
-
-  componentDidUpdate() {
-    console.log('componentDidUpdate()');
-  }
-
-  componentWillUnmount() {
-    console.log('componentWillUnmount()');
   }
 
   playSound() {
